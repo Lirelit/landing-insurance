@@ -74,11 +74,12 @@
 }
 
 .mode-dark{
-  --bg-color: #888f99;
-  --second-bg-color: #c5c8cc;;
+  --bg-color: #62676e;
+  --second-bg-color: #a4a6a8;;
   --text-color: #252b42;
   --second-text-color: #2b2b31;
 }
+ 
 
 body {
   font-family: "Montserrat";
@@ -264,6 +265,12 @@ ul {
 font-size: 24px;
 line-height: 32px;
 letter-spacing: 0.1;
+}
+
+@media (max-width: 560px){
+  .header__logo-link {
+     font-size: 16px;
+  }
 }
 
 
@@ -480,8 +487,8 @@ max-width: 539px;
   position: absolute;
   transform: translate(0,50%);
   bottom: 0;
-  max-width: calc(var(--content-widtt) + var(--mob-padding) * 2);
-  
+  max-width: calc(var(--content-widtt) + var(--gutter) * 2);
+  margin-left: -15px;
 
 }
 

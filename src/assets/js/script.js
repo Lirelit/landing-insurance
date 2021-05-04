@@ -9,15 +9,12 @@ const  menuWrapEl = document.querySelector('.header__menu-wrap');
 
 burgerEl.addEventListener('click', function(event)
 {menuWrapEl.classList.toggle('header__menu-wrap_visible');
+headerEl.classList.toggle('header_bg');
 });
 
  
 
 
-burgerEl.addEventListener('click', function(event)
-{headerEl.classList.toggle('header_bg');
-
-});
 
 
 window.addEventListener('scroll', function() {
@@ -76,31 +73,48 @@ const telephoneRegEx = /^(\+375|375|80)(29|25|44|33)(\d{3})(\d{2})(\d{2})$/;
  
 
 
+function checkEmail (){ let isMailChecked = emailRegEx.test(formEmailEl.value);
+  if(!isMailChecked) {
+    formEmailEl.classList.add('error');
+    }
+  else {formEmailEl.classList.remove('error');
+
+}};
+
+function checkName (){
+  if (inputName.value === '' || inputName.value == null) {
+    inputName.classList.add('error');
+    }
+    else {inputName.classList.remove('error');};
+};
+
+function checkTelephone(){
+  
+    let isTelephoneChecked = telephoneRegEx.test(inputTelephone.value);
+    if(!isTelephoneChecked) {
+      inputTelephone.classList.add('error');
+      }
+    else {inputTelephone.classList.remove('error');
+  
+  }
+};
+
+
+
 
 contactsFormEl.addEventListener('submit', function(event) {
 
   event.preventDefault();
-  let isMailChecked = emailRegEx.test(formEmailEl.value);
-  if(!isMailChecked) {
-    formEmailEl.classList.add('error');
-    }
-  else {formEmailEl.classList.remove('error');
-
-}
+  checkEmail ();
+  checkName ();
+  checkTelephone();
+  
 });
-
-
 
 
 formEmailEl.addEventListener('blur', function() {
 
-  let isMailChecked = emailRegEx.test(formEmailEl.value);
-  console.log(isMailChecked);
-  if(!isMailChecked) {
-    formEmailEl.classList.add('error');
-    }
-  else {formEmailEl.classList.remove('error');
-}
+  checkEmail ();
 });
 
 
@@ -113,30 +127,10 @@ formEmailEl.addEventListener('focus', function() {
 
 
 
-
-
-contactsFormEl.addEventListener('submit', function(event) {
-
-  event.preventDefault();
-   
-
-  if (inputName.value === '' || inputName.value == null) {
-    inputName.classList.add('error');
-    }
-    else {inputName.classList.remove('error');};
-
-  });
-
-
-
   inputName.addEventListener('blur', function() {
  
-    if (inputName.value === '' || inputName.value == null) {
-      inputName.classList.add('error');
-      }
-      else {inputName.classList.remove('error');};
-  }
-  );
+    checkName ();
+  });
 
 
 
@@ -147,27 +141,10 @@ contactsFormEl.addEventListener('submit', function(event) {
   );
 
 
-  contactsFormEl.addEventListener('submit', function(event) {
-
-    event.preventDefault();
-    let isTelephoneChecked = telephoneRegEx.test(inputTelephone.value);
-    if(!isTelephoneChecked) {
-      inputTelephone.classList.add('error');
-      }
-    else {inputTelephone.classList.remove('error');
-  
-  }
-  });
-
 
   inputTelephone.addEventListener('blur', function() {
 
-    let isTelephoneChecked = telephoneRegEx.test(inputTelephone.value);
-    if(!isTelephoneChecked) {
-      inputTelephone.classList.add('error');
-      }
-    else {inputTelephone.classList.remove('error');
-  }
+    checkTelephone()
   });
   
 
@@ -177,15 +154,42 @@ contactsFormEl.addEventListener('submit', function(event) {
   }
   );
 
-  // theme switch   
+
+
+
+  // theme switch   & local storage
 
 const switchEl = document.querySelector ('.switch .slider');
 const switchCheckboxEl = document.querySelector ('.switch .checkbox');
+const currentTheme = localStorage.getItem('currentTheme', 'dark');
+
+
+window.onload = function () {
+ if (localStorage.getItem('currentTheme'))
+ document.querySelector('html').classList.add('mode-dark');
+};
+
 
 switchEl.addEventListener('click', function(event) {
   document.querySelector('html').classList.toggle('mode-dark');
 
-})
+
+  if(document.querySelector('html').classList.contains('mode-dark')){
+    localStorage.setItem('currentTheme', 'dark');  
+  }
+  else {localStorage.removeItem('currentTheme', 'dark');};
+  
+
+
+});
+
+
+ 
+
+
+
+
+
 
 
  
