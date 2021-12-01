@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
 var swiper = new Swiper(".swiper-container", {
   loop: true,
   slidesPerView: 3,
+  grabCursor: true,
   breakpoints: {
     900: { slidesPerView: 3 },
     800: { slidesPerView: 2 },
